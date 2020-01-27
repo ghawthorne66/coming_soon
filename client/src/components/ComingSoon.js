@@ -14,10 +14,11 @@ import youtube from "../images/youtubeicon.svg";
 import twitter from "../images/twittericon.svg";
 import "../styles/ComingSoon.css";
 
+
 class ComingSoon extends Component {
   state = {
     countdown: {
-      countdownDate: "2020-12-31 00:00:00"
+      futureDate: "2020-12-31 00:00:00"
     },
     logo: {
       alt: "Spinning Gear",
@@ -29,7 +30,7 @@ class ComingSoon extends Component {
     },
     description: {
       text:
-        "The Coding From Null course platform will be up and running shortly. Please subscribe to our newsletter below to receive updates when new course material is available."
+        "The platform will be up and running shortly. Please subscribe to our newsletter below to receive updates when new course material is available."
     },
     subscribe: {
       placeholder: "Enter Email Address",
@@ -37,22 +38,22 @@ class ComingSoon extends Component {
     },
     links: [
       {
-        url: "https://www.facebook.com/groups/CodingFromNull",
+        url: "https://www.facebook.com",
         logo: facebook,
         text: "Join"
       },
       {
-        url: "https://www.instagram.com/codingfromnull",
+        url: "https://www.instagram.com",
         logo: instagram,
         text: "Follow"
       },
       {
-        url: "https://www.youtube.com/channel/UC9Psp9-p9jgHfDBReAAcZ3w",
+        url: "https://www.youtube.com",
         logo: youtube,
         text: "Watch"
       },
       {
-        url: "https://www.twitter.com/CodingFromNull",
+        url: "https://www.twitter.com",
         logo: twitter,
         text: "Tweet"
       }
@@ -106,17 +107,17 @@ class ComingSoon extends Component {
   render() {
     const {
       title,
+      countdown,
       description,
       logo,
       subscribe,
       links,
-      countdown,
       notification
     } = this.state;
 
     return (
       <div className="background">
-        <Countdown countdownDate={countdown.countdownDate} />
+        <Countdown futureDate={countdown.futureDate} />
         <Logo alt={logo.alt} src={logo.src} spinSpeed={logo.spinSpeed} />
         <Title text={title.text} />
         <Description

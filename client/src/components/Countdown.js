@@ -1,71 +1,76 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import moment, { duration } from 'moment';
-import useInterval from "react-useinterval";
+import moment, { duration } from "moment";
 
-import '../styles/Countdown.css';
+import "../styles/Countdown.css";
 
-const Countdown = ({ countdownDate }) => {
-    const [state, setState] = useState({
-      days: 0,
-      hours: 0,
-      mins: 0,
-      secs: 0
+  class Countdown extends Component {
+    state = {
+    days: 0,
+    hours: 0,
+    mins: 0,
+    secs: 0
+  };
+
+  addZeros(value) {
+    value = String(value);
+    while (value.length < 2) {
+      value = `0${value}`;
+    }
+    return value;
+  };
+
+  setCountdown() {
+    const futureDate = moment(this.props.futureDate);
+
+    const today = moment();
+
+    const clockDuration = duration(futureDate.diff(today));
+
+    const days = Math.floor(clockDuration.asDays());
+    const hours = clockDuration.hours();
+    const mins = clockDuration.minutes();
+    const secs = clockDuration.seconds();
+
+    this.setState({
+      days,
+      hours,
+      mins,
+      secs
     });
-  
-    const addZeros = value => {
-      value = String(value);
-      while (value.length < 2) {
-        value = `0${value}`;
-      }
-      return value;
-    };
-  
-    const setCountdown = () => {
-      const futureDate = moment(countdownDate);
-  
-      const today = moment();
-  
-      const clockDuration = duration(futureDate.diff(today));
-  
-      const days = Math.floor(clockDuration.asDays());
-      const hours = clockDuration.hours();
-      const mins = clockDuration.minutes();
-      const secs = clockDuration.seconds();
-  
-      setState({
-        days,
-        hours,
-        mins,
-        secs
-      });
-    };
-  
-    useInterval(() => {
-      setCountdown();
+  };
+
+  componentDidMount() {
+    this.setCountdown()
+    this.interval = setInterval(() => {
+      this.setCountdown()
     }, 1000);
-  
-    useEffect(() => {
-      setCountdown();
-    });
-  
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
     return (
       <div className="countdown">
-        {Object.keys(state).map((key, i) => (
-          <div key={i} className="countdown-segment">
+        {Object.keys(this.state).map((key, i) => (
+          <div className="countdown-segment">
             <span className="countdown-segment-number">
-              {addZeros(state[key])}
+              {this.addZeros(this.state[key])}
             </span>
-            <span className="countdown-segment-caption">{key.toUpperCase()}</span>
+            <span className="countdown-segment-caption">
+              {key.toUpperCase()}</span>
           </div>
         ))}
       </div>
     );
-  };
-  
+  }
+}
+
+
   Countdown.propTypes = {
     countdownDate: PropTypes.string.isRequired
   };
-  
+
   export default Countdown;
-  

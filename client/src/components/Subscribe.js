@@ -11,7 +11,7 @@ const Subscribe = ({
   changeLogoSpeed
 }) => {
   const [state, setState] = useState({
-    email: ""
+    email: " "
   });
 
   const handleChange = e => {
@@ -21,9 +21,11 @@ const Subscribe = ({
   const handleSubmit = e => {
     e.preventDefault();
 
-    if (state.email) {
+    if (this.state.email) {
       fetch(`/.netlify/functions/addMember?email=${state.email}`)
+      // fetch(`/api/memberAdd?email=${this.state.email}`)
         .then(res => res.json().then(data => ({status: res.status, body: data})))
+        .then(res => console.log(res))
         .then(obj => {
           configureNotification(obj);
           showNotification();
