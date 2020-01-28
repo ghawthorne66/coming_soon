@@ -9,7 +9,7 @@ const list_id = process.env.LIST_ID;
 const mailchimp = new Mailchimp(mc_api_key);
 const app = express();
 //serve static files from 
-react app
+
 app.use(express.static(path.join(__dirname, 'client/build')))
 
 //API endpoint
