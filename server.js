@@ -6,12 +6,11 @@ require('dotenv').config({ path: __dirname + "/variables.env"});
 const mc_api_key = process.env.MAILCHIMP_API_KEY;
 const list_id = process.env.LIST_ID;
 
-//serve static files from react app
-app.use(express.static(path.join(__dirname, 'client/build')))
-
-const app = express();
 const mailchimp = new Mailchimp(mc_api_key);
-
+const app = express();
+//serve static files from 
+react app
+app.use(express.static(path.join(__dirname, 'client/build')))
 
 //API endpoint
 app.get("/api/memberAdd" , (req, res) => {
