@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/ghawthorne66/coming_soon/issues"
   },
-  "author": "GS Hawthorne"
+  "author": "GS Hawthorne",
   "homepage": "https://github.com/ghawthorne66/coming_soon#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
