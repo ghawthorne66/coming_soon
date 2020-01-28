@@ -18,8 +18,12 @@
   .notification.success {
     background-color: var(--green);
   }
+
+  .notification.warning {
+    background-color: var(--orange);
+  }
   
-  .notification.error {
+  .notification.danger {
     background-color: var(--red);
   }
   
