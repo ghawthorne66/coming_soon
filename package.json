@@ -34,7 +34,7 @@
   "homepage": "https://github.com/ghawthorne66/coming_soon#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mailchimp-api-v3": "^1.13.1",
     "react-scripts": "^2.1.8",
     "netlify-lambda": "^1.6.3",
